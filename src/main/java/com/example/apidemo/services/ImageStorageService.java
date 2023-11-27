@@ -82,9 +82,12 @@ public class ImageStorageService implements IStorageService {
 
     @Override
     public byte[] readFileContent(String fileName) {
+
         try {
             Path file = storageFolder.resolve(fileName);
+
             Resource resource = new UrlResource(file.toUri());
+            System.out.println(resource);
             if (resource.exists() || resource.isReadable()) {
                 byte[] bytes = StreamUtils.copyToByteArray(resource.getInputStream());
                 return bytes;
